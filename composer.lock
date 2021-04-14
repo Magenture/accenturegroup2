@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "13845b41e917adc3d1c8ab4330e88e30",
+    "content-hash": "94d64abaaee63ceb2ced96beca82076d",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -20875,6 +20875,46 @@
                 "stylesheet"
             ],
             "time": "2019-11-06T18:30:11+00:00"
+        },
+        {
+            "name": "wolfsellers/module-enabledisabletfa",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wolfsellers/module-enabledisabletfa.git",
+                "reference": "57e0f33861f989c5017f40e986d7e72d35c488d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wolfsellers/module-enabledisabletfa/zipball/57e0f33861f989c5017f40e986d7e72d35c488d9",
+                "reference": "57e0f33861f989c5017f40e986d7e72d35c488d9",
+                "shasum": ""
+            },
+            "require": {
+                "magento/module-two-factor-auth": "1.*"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "psr-4": {
+                    "WolfSellers\\EnableDisableTfa\\": ""
+                },
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rus0",
+                    "email": "andonid88@gmail.com",
+                    "homepage": "https://wolfsellers.com"
+                }
+            ],
+            "description": "Adds enable disable switch for the Two-factor Authorization",
+            "time": "2020-10-13T01:52:01+00:00"
         },
         {
             "name": "yotpo/magento2-module-yotpo-reviews",

@@ -33,7 +33,8 @@
         "magento/module-widget-sample-data": "100.4.*",
         "magento/module-wishlist-sample-data": "100.4.*",
         "magento/product-community-edition": "2.4.2",
-        "magento/sample-data-media": "100.4.*"
+        "magento/sample-data-media": "100.4.*",
+        "wolfsellers/module-enabledisabletfa": "^1.0"
     },
     "autoload": {
         "exclude-from-classmap": [
