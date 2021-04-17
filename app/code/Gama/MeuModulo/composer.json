@@ -1,0 +1,22 @@
+{
+    "name": "gama/module-meumodulo",
+    "description": "teste descri\u00e7\u00e3o",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Mage2Gen",
+            "email": "info@mage2gen.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Gama\\MeuModulo\\": ""
+        }
+    }
+}
