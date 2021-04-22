@@ -13,28 +13,10 @@
     "version": "2.4.2",
     "require": {
         "magento/composer-root-update-plugin": "~1.1",
-        "magento/module-bundle-sample-data": "100.4.*",
-        "magento/module-catalog-rule-sample-data": "100.4.*",
-        "magento/module-catalog-sample-data": "100.4.*",
-        "magento/module-cms-sample-data": "100.4.*",
-        "magento/module-configurable-sample-data": "100.4.*",
-        "magento/module-customer-sample-data": "100.4.*",
-        "magento/module-downloadable-sample-data": "100.4.*",
-        "magento/module-grouped-product-sample-data": "100.4.*",
-        "magento/module-msrp-sample-data": "100.4.*",
-        "magento/module-offline-shipping-sample-data": "100.4.*",
-        "magento/module-product-links-sample-data": "100.4.*",
-        "magento/module-review-sample-data": "100.4.*",
-        "magento/module-sales-rule-sample-data": "100.4.*",
-        "magento/module-sales-sample-data": "100.4.*",
-        "magento/module-swatches-sample-data": "100.4.*",
-        "magento/module-tax-sample-data": "100.4.*",
-        "magento/module-theme-sample-data": "100.4.*",
-        "magento/module-widget-sample-data": "100.4.*",
-        "magento/module-wishlist-sample-data": "100.4.*",
+        "magento/magento-composer-installer": "^0.2.1",
         "magento/product-community-edition": "2.4.2",
-        "magento/sample-data-media": "100.4.*",
         "mercadopago/magento2-plugin": "3.*",
+        "rafaelstz/traducao_magento2_pt_br": "dev-master",
         "wolfsellers/module-enabledisabletfa": "^1.0"
     },
     "autoload": {
@@ -89,12 +71,16 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "repositories": [
-        {
+    "repositories": {
+        "0": {
             "type": "composer",
             "url": "https://repo.magento.com/"
+        },
+        "emizentech-magento2-category-widget": {
+            "type": "vcs",
+            "url": "https://github.com/emizentech/magento2-category-list-widget/"
         }
-    ],
+    },
     "extra": {
         "magento-force": "override"
     }
