@@ -71,6 +71,8 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
+    "repositories": [
+        {
     "repositories": {
         "0": {
             "type": "composer",
