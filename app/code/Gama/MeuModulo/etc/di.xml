@@ -7,4 +7,8 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="rewrite-street" type="Gama\MeuModulo\Plugin\LayoutProcessorPlugin" sortOrder="10"/>
+    </type>
 </config>

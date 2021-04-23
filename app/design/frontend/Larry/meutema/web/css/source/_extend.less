@@ -1,0 +1,23 @@
+& when (@media-common = true) {
+    .field.street {
+        .field {
+            margin: 0 0 20px;
+            .label {
+                clip: inherit;
+                width: inherit;
+                height: inherit;
+                position: inherit;
+                margin: 0 0 8px;
+                display: table;
+            }
+        }
+        ._required {
+            .label:after {
+                content: '*';
+                color: #e02b27;
+                font-size: 1.2rem;
+                margin: 0 0 0 5px;
+            }
+        }
+    }
+}
