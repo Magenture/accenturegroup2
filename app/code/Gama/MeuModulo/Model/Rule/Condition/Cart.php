@@ -51,7 +51,7 @@ class Cart extends \Magento\Rule\Model\Condition\AbstractCondition
     public function loadAttributeOptions()
     {
         $this->setAttributeOption([
-            'day_of_the_week' => __('Day of the week')
+            'day_of_the_week' => __('Dia da Semana')
         ]);
         return $this;
     }

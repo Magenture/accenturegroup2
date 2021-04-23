@@ -14,10 +14,10 @@ class Days implements \Magento\Framework\Option\ArrayInterface
      */
     public function toOptionArray()
     {
-        return [['value' => 1, 'label' => __('Monday')], ['value' => 2, 'label' => __('Tuesday')],
-                ['value' => 3, 'label' => __('Wednesday')], ['value' => 4, 'label' => __('Thursday')],
-                ['value' => 5, 'label' => __('Friday')], ['value' => 6, 'label' => __('Saturday')],
-                ['value' => 7, 'label' => __('Sunday')]];
+        return [['value' => 1, 'label' => __('Segunda-Feira')], ['value' => 2, 'label' => __('Terça-Feira')],
+            ['value' => 3, 'label' => __('Quarta-Feira')], ['value' => 4, 'label' => __('Quinta-Feira')],
+            ['value' => 5, 'label' => __('Sexta-Feira')], ['value' => 6, 'label' => __('Sabado')],
+            ['value' => 7, 'label' => __('Domingo')]];
     }
 
     /**
@@ -27,8 +27,8 @@ class Days implements \Magento\Framework\Option\ArrayInterface
      */
     public function toArray()
     {
-        return [1 => __('Monday'), 2 => __('Tuesday'), 3 => __('Wednesday'),
-                4 => __('Thursday'), 5 => __('Friday'), 6 => __('Saturday'),
-                7 => __('Sunday')];
+        return [1 => __('Segunda-Feira'), 2 => __('Terça-Feira'), 3 => __('Quarta-Feira'),
+            4 => __('Quinta-Feira'), 5 => __('Sexta-Feira'), 6 => __('Sabado'),
+            7 => __('Domingo')];
     }
 }
