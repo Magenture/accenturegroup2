@@ -15,6 +15,7 @@
         "magento/composer-root-update-plugin": "~1.1",
         "magento/magento-composer-installer": "^0.2.1",
         "magento/product-community-edition": "2.4.2",
+        "mageplaza/magento-2-product-slider": "^4.0",
         "mercadopago/magento2-plugin": "3.*",
         "rafaelstz/traducao_magento2_pt_br": "dev-master",
         "wolfsellers/module-enabledisabletfa": "^1.0"
@@ -86,4 +87,3 @@
         "magento-force": "override"
     }
 }
-

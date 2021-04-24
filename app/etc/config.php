@@ -320,6 +320,8 @@ return [
         'Klarna_Kp' => 1,
         'Klarna_Onsitemessaging' => 1,
         'Klarna_KpGraphQl' => 1,
+        'Mageplaza_Core' => 1,
+        'Mageplaza_Productslider' => 1,
         'MercadoPago_Core' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
