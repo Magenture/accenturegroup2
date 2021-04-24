@@ -3,6 +3,7 @@
 namespace Gama\MeuModulo\Model\Rule\Condition;
 
 use Magento\Setup\Exception;
+use \Magento\Framework\Api\SearchCriteriaBuilderFactory;
 
 /**
  * Class Customer
@@ -20,28 +21,29 @@ class Cart extends \Magento\Rule\Model\Condition\AbstractCondition
     protected $ruleRepository;
 
     /**
-     * @var \Magento\Framework\Api\SearchCriteriaBuilder
+     * @var SearchCriteriaBuilderFactory
      */
-    protected $searchBuilder;
+    protected $searchBuilderFactory;
 
     /**
      * Cart constructor.
      * @param \Magento\Rule\Model\Condition\Context $context
      * @param \Gama\MeuModulo\Model\Config\Source\Days $sourceDays
      * @param \Magento\SalesRule\Model\RuleRepository $ruleRepository
+     * @param SearchCriteriaBuilderFactory $searchBuilder
      * @param array $data
      */
     public function __construct(
         \Magento\Rule\Model\Condition\Context $context,
         \Gama\MeuModulo\Model\Config\Source\Days $sourceDays,
         \Magento\SalesRule\Model\RuleRepository $ruleRepository,
-        \Magento\Framework\Api\SearchCriteriaBuilder $searchBuilder,
+        SearchCriteriaBuilderFactory $searchBuilder,
         array $data = []
     ) {
         parent::__construct($context, $data);
         $this->sourceDays = $sourceDays;
         $this->ruleRepository = $ruleRepository;
-        $this->searchBuilder = $searchBuilder;
+        $this->searchBuilderFactory = $searchBuilder;
     }
 
     /**
@@ -57,7 +59,6 @@ class Cart extends \Magento\Rule\Model\Condition\AbstractCondition
     }
 
     /**
-     * Get input type
      * @return string
      */
     public function getInputType()
@@ -90,29 +91,31 @@ class Cart extends \Magento\Rule\Model\Condition\AbstractCondition
     }
 
     /**
-     * Validate Cart Day of the Week Condition
      * @param \Magento\Framework\Model\AbstractModel $model
      * @return bool
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function validate(\Magento\Framework\Model\AbstractModel $model)
+    public function validate(\Magento\Framework\Model\AbstractModel $model): bool
     {
         try {
+            /**  @var \Magento\Framework\Api\SearchCriteriaInterface */
+            $searchCriteriaBuilder = $this->searchBuilderFactory->create();
             /**
              * Criteria to search by attribute option, because by Id on a store with multiple rules,
              * the Id always will be different
             */
-            $searchCriteria = $this->searchBuilder->addFilter(
+            $searchCriteriaBuilder->addFilter(
                 'conditions_serialized',
                 '%day_of_the_week%',
                 'like'
-            )->create();
+            );
 
-            $rules = $this->ruleRepository->getList($searchCriteria);
+            $rules = $this->ruleRepository->getList($searchCriteriaBuilder->create());
 
             if($rules != null) {
                 //Get value set for selected day on the rule, for example Monday => 1
                 $value = $rules->getItems()[0]->getCondition()->getConditions()[0]->getValue();
-                return date('w') == $value ? true : false;
+                return date('w') == $value;
             }
             return false;
         } catch (Exception $e) {
