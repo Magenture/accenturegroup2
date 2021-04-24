@@ -8,11 +8,8 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 <body>
     <referenceBlock name="header.links">
-        <block class="Gama\MeuModulo\Block\Link" name="social.media" before="-">
-            <arguments>
-                <argument name="label" xsi:type="string">Nos chame no WhatsApp ;)</argument>
-                <argument name="path" xsi:type="string">https://wa.me/5511989892828</argument>
-            </arguments>
+        <block class="Magento\Framework\View\Element\Template" name="social.media"
+               template="Gama_MeuModulo::link.phtml" before="-">
         </block>
     </referenceBlock>
 </body>

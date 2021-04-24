@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="sparsh" translate="label" sortOrder="500">
+            <label>Extensões</label>
+        </tab>
+        <section id="wa_chat" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>WhatsApp</label>
+            <tab>sparsh</tab>
+            <resource>Gama_MeuModulo::wa_chat</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configurações</label>
+                <field id="phone_number" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Número do WhatsApp</label>
+                    <comment>Número de telefone com código do país e ddd, ex: +5511998989092</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

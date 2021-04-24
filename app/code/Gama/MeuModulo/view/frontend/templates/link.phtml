@@ -1,0 +1,12 @@
+<?php $helper = $this->helper(Gama\MeuModulo\Helper\Data::class);?>
+
+<?php if(strlen($helper->getWAPhone()) > 0) : ?>
+<li>
+    <a href="https://wa.me/<?=$helper->getWAPhone();?>" target="_blank"style="
+        color: yellow;
+        text-decoration: underline;
+    ">
+    Chama a gente no WhatsApp ;)
+    </a>
+</li>
+<?php endif; ?>

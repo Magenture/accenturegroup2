@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <wa_chat>
+            <general>
+                <phone_number>+5511XXXXXXXXX</phone_number>
+            </general>
+        </wa_chat>
+    </default>
+</config>
