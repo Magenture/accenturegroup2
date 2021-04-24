@@ -3,7 +3,7 @@
 namespace Gama\MeuModulo\Model\Rule\Condition;
 
 use Magento\Setup\Exception;
-use \Magento\Framework\Api\SearchCriteriaBuilderFactory;
+use Magento\Framework\Api\SearchCriteriaBuilderFactory;
 
 /**
  * Class Customer
@@ -52,10 +52,9 @@ class Cart extends \Magento\Rule\Model\Condition\AbstractCondition
      */
     public function loadAttributeOptions()
     {
-        $this->setAttributeOption([
+        return $this->setAttributeOption([
             'day_of_the_week' => __('Dia da Semana')
         ]);
-        return $this;
     }
 
     /**

@@ -34,7 +34,7 @@ class CartConditionObserver implements \Magento\Framework\Event\ObserverInterfac
     private function getCustomerFirstOrderCondition()
     {
         return [
-            'label'=> __('Day of the week'),
+            'label'=> __('Dia da Semana'),
             'value'=> \Gama\MeuModulo\Model\Rule\Condition\Cart::class
         ];
     }
