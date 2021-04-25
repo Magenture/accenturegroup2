@@ -1,0 +1,323 @@
+<?php
+/**
+ * @var \Gama\NossasLojas\Block\StoresList $block
+ * @codingStandardsIgnoreFile
+ */
+
+$googleApiKey = $block->getGoogleApiKey();
+?>
+<?php if($googleApiKey === null): ?>
+<p class="message-error error message">
+    <span><?php echo __('Google Api Key is not set!'); ?></span>
+</p>
+<?php else: ?>
+<div class="nossas-lojas-module">
+    <div ng-app="gMapsApp">
+        <div ng-controller="mapController" ng-init="init()">
+            <div class="nossas-lojas-navigation">
+                <input type="text" ng-model="search" placeholder="<?php echo __('Pesquisar'); ?>" ng-keypress="searchKeyPress($event)" ng-change="searchChange()">
+                <p class="store-error" ng-show="noResults">
+                    <?php echo __('No results found'); ?>
+                </p>
+                <div class="nossas-lojas-results">
+                    <div ng-repeat="(key, store) in helper.markers">
+                        <store store="store" center-on-marker="centerOnMarker" langs="helper.langs" ng-hide="!store.visible"></store>
+                    </div>
+                </div>
+            </div>
+            <div id="map-container" class="nossas-lojas-map"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var mapModule = angular.module('gMapsApp', []);
+    var stores = angular.fromJson(atob("<?php echo $block->getStoresJson(); ?>"));
+
+    mapModule.factory('helper', function()
+    {
+        return {
+            markers: {},
+            basePosition : {
+                center: {
+                    lat: -23.562,
+                    lng: -46.644
+                },
+                zoom: 10
+            },
+            langs: {
+                tel: '<?php echo __('Tel'); ?>',
+                fax: '<?php echo __('Fax'); ?>'
+            }
+        }
+    });
+
+    mapModule.controller('mapController', function($scope, $http, $timeout, helper)
+    {
+        var searchTimeout;
+
+        $scope.helper = helper;
+        $scope.storesGrouped = {};
+
+        $scope.noResults = false;
+        $scope.allAdded = true;
+
+        $scope.search = '';
+        $scope.infoWindow = false;
+
+        $scope.init = function()
+        {
+
+            $scope.map = new google.maps.Map(document.getElementById('map-container'), $scope.helper.basePosition);
+            $scope.markerClusterer = new MarkerClusterer($scope.map, []);
+
+            $scope.storesGrouped = angular.fromJson(atob("<?php echo $block->getStoresGroupedJson(); ?>"));
+
+            if(stores.length > 0)
+            {
+                angular.forEach(stores, function(store)
+                {
+                    var opts = {
+                        position: {
+                            lat: parseFloat(store.lat),
+                            lng: parseFloat(store.lng)
+                        },
+                        map: $scope.map,
+                        zoom: store.zoom,
+                        id: store.store_id,
+                        name: store.name,
+                        address: store.address,
+                        city: store.city,
+                        postcode: store.postcode,
+                        phone: store.phone,
+                        visible: true
+                    };
+
+                    $scope.newMarker(opts);
+                });
+            }
+        };
+
+        $scope._on = function(opts)
+        {
+            var self = this;
+
+            google.maps.event.addListener(opts.obj, opts.event, function(e)
+            {
+                opts.callback.call(self, e);
+            });
+        };
+
+        $scope.newMarker = function(opts)
+        {
+            var marker = new google.maps.Marker(opts);
+
+            $scope._on({
+                obj: marker,
+                event: 'click',
+                callback: function()
+                {
+                    var content =
+                        '<div class="nossas-lojas-popup">' +
+                        '<h4 class="result-name">' + marker.name + '</h4>' +
+                        '<p class="result-address">';
+
+                    if(marker.address !== null && marker.address !== '')
+                    {
+                        content += marker.address + '<br />';
+                    }
+                    if(marker.city !== null && marker.city !== '')
+                    {
+                        content += marker.city + ', ';
+                    }
+                    if(marker.postcode !== null && marker.postcode !== '')
+                    {
+                        content += ' ' + marker.postcode;
+                    }
+
+                    if(marker.phone !== null && marker.phone !== '')
+                    {
+                        content += '<br /><?php echo __('Tel'); ?>.: ' + marker.phone;
+                    }
+
+                    content += '</p>';
+                    content += '</div>';
+
+                    $scope.map.setCenter(opts.position);
+
+                    if($scope.infoWindow)
+                    {
+                        $scope.infoWindow.close();
+                    }
+
+                    $scope.infoWindow = new google.maps.InfoWindow({content: content});
+                    $scope.infoWindow.open($scope.map, marker);
+                }
+            });
+
+            $scope.helper.markers[marker.id] = marker;
+            $scope.markerClusterer.addMarker(marker);
+        };
+
+        $scope.searchInStores = function()
+        {
+            if($scope.infoWindow)
+            {
+                $scope.infoWindow.close();
+            }
+            if($scope.search.length > 0)
+            {
+                $scope.allAdded = false;
+                var search = $scope.search.toLowerCase();
+                var bounds = new google.maps.LatLngBounds();
+                var found = 0;
+                var lastStore;
+                var currentCounter,
+                    additionalCounter;
+
+                $scope.markerClusterer.clearMarkers();
+                angular.forEach($scope.helper.markers, function(store, key)
+                {
+                    var visibleBefore = store.visible;
+                    currentCounter = $scope.getCurrentCounter(store);
+                    additionalCounter = $scope.getAdditionalCounter(store);
+                    store.visible =
+                        store.name.toLowerCase().indexOf(search) !== -1 ||
+                        (store.address !== null && store.address.toLowerCase().indexOf(search) !== -1) ||
+                        (store.city !== null && store.city.toLowerCase().indexOf(search) !== -1);
+
+                    if(store.visible)
+                    {
+                        $scope.markerClusterer.addMarker($scope.helper.markers[key]);
+                        bounds.extend(store.getPosition());
+                        found++;
+                        lastStore = store;
+                        if(!visibleBefore)
+                        {
+                            if(currentCounter)
+                            {
+                                currentCounter.count++;
+                            }
+                            if(additionalCounter)
+                            {
+                                additionalCounter.count++;
+                            }
+                        }
+                    }
+                    else if(visibleBefore)
+                    {
+                        if(currentCounter)
+                        {
+                            currentCounter.count--;
+                        }
+                        if(additionalCounter)
+                        {
+                            additionalCounter.count--
+                        }
+                    }
+                });
+                if(found > 0)
+                {
+                    $scope.noResults = false;
+                    if(found === 1)
+                    {
+                        $scope.centerOnMarker(lastStore);
+                    }
+                    else
+                    {
+                        $scope.map.fitBounds(bounds);
+                    }
+                }
+                else
+                {
+                    $scope.noResults = true;
+                    $scope.setCenterPosition();
+                }
+            }
+            else
+            {
+                $scope.noResults = false;
+                $scope.addAllMarkers();
+            }
+        };
+
+        $scope.addAllMarkers = function()
+        {
+            if(!$scope.allAdded)
+            {
+                angular.forEach($scope.helper.markers, function(store, key)
+                {
+                    store.visible = true;
+                    $scope.markerClusterer.addMarker($scope.helper.markers[key]);
+                });
+
+                $scope.allAdded = true;
+                $scope.resetCounters();
+                $scope.setCenterPosition();
+            }
+        };
+
+        $scope.centerOnMarker = function(marker)
+        {
+            if($scope.infoWindow)
+            {
+                $scope.infoWindow.close();
+            }
+            $scope.map.setCenter(marker.getPosition());
+            $scope.map.setZoom(parseInt(marker.zoom));
+        };
+
+        $scope.setCenterPosition = function()
+        {
+            var center = new google.maps.LatLng(
+                $scope.helper.basePosition.center.lat,
+                $scope.helper.basePosition.center.lng
+            );
+
+            $scope.map.setCenter(center);
+            $scope.map.setZoom($scope.helper.basePosition.zoom);
+        };
+
+        $scope.searchChange = function()
+        {
+            if(!angular.isUndefined(searchTimeout))
+            {
+                $timeout.cancel(searchTimeout);
+            }
+            searchTimeout = $timeout($scope.searchInStores, 300);
+        };
+
+        $scope.searchKeyPress = function(e)
+        {
+            if (e.which == 13)
+            {
+                $scope.searchInStores();
+            }
+        };
+
+        $scope.getCurrentCounter = function(store)
+        {
+                return false;
+        };
+
+        $scope.getAdditionalCounter = function(store)
+        {
+            return false;
+        }
+    });
+
+    mapModule.directive('store', function()
+    {
+        return {
+            restrict: 'E',
+            templateUrl: '<?php echo $block->getViewFileUrl('Gama_NossasLojas::js/template/store.html'); ?>',
+            scope: {
+                store: '=',
+                centerOnMarker: '&',
+                langs: '='
+            }
+        }
+    });
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $block->getGoogleApiKey(); ?>"></script>
+<?php endif; ?>

@@ -1,0 +1,3 @@
+.admin__menu .submenu .column:only-of-type .item-nossaslojas .submenu-group-title {
+    display: block;
+}

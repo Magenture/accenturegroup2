@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="gama" translate="label" sortOrder="200">
+            <label>Nossas Lojas</label>
+        </tab>
+        <section id="nossaslojas" translate="label" type="text" sortOrder="400" showInDefault="1">
+            <label>Nossas Lojas</label>
+            <tab>gama</tab>
+            <resource>Gama_NossasLojas::configuration</resource>
+            <group id="google_api_key" translate="label" type="text" sortOrder="10" showInDefault="1">
+                <label>Google Api Key</label>
+                <field id="frontend" translate="label" sortOrder="10" type="text" showInDefault="1">
+                    <label>Frontend Key</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="backend" translate="label" sortOrder="10" type="text" showInDefault="1">
+                    <label>Backend Key</label>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

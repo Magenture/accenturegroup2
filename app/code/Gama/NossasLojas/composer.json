@@ -1,0 +1,22 @@
+{
+    "name": "gama/module-nossaslojas",
+    "description": "Localizador de Lojas usando API do Google Maps",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Rodrigo Ribeiro",
+            "email": "rodrigo@bhx.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Gama\\NossasLojas\\": ""
+        }
+    }
+}

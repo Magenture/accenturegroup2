@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Gama_NossasLojas::css/nossas-lojas.css" />
+        <link src="Gama_NossasLojas::angular/angular.min.js" />
+        <link src="Gama_NossasLojas::js/markerclusterer.js" />
+    </head>
+    <body>
+        <referenceBlock name="Gama-NossasLojas-link">
+            <arguments>
+                <argument name="current" xsi:type="boolean">true</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Gama\NossasLojas\Block\StoresList" name="nossaslojas.stores.list" template="Gama_NossasLojas::list.phtml" />
+        </referenceContainer>
+    </body>
+</page>

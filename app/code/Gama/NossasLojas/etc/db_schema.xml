@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="gama_mystores_store" resource="default">
+        <column xsi:type="int" name="store_id" identity="true" comment="Store ID" />
+        <column xsi:type="varchar" name="name" length="100" nullable="false" comment="Store Name" />
+        <column xsi:type="varchar" name="address" length="255" nullable="true" default="null" comment="Store Name" />
+        <column xsi:type="varchar" name="postcode" length="100" nullable="true" default="null" />
+        <column xsi:type="varchar" name="city" length="100" nullable="true" default="São Paulo" />
+        <column xsi:type="varchar" name="phone" length="100" nullable="true" default="null" />
+        <column xsi:type="varchar" name="lat" length="100" nullable="true" default="null" comment="Latitude" />
+        <column xsi:type="varchar" name="lng" length="100" nullable="true" default="null" comment="Longitude" />
+        <column xsi:type="varchar" name="zoom" length="5" nullable="true" default="null" comment="Zoom do GoogleMap" />
+        <column xsi:type="tinyint" name="is_active" nullable="false" default="1" comment="Zoom do GoogleMap" />
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" />
+        <column xsi:type="datetime" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" />
+        <index referenceId="GAMA_MYSTORES_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>

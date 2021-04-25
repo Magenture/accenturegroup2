@@ -1,0 +1,11 @@
+<a href="javascript:void(0);" class="nossas-lojas-result" ng-click="centerOnMarker()(store)">
+    <h4 class="nossas-lojas-result-name">{{store.name}}</h4>
+    <span class="nossas-lojas-result-desc" ng-show="store.address != ''">{{store.address}}</span>
+    <span class="nossas-lojas-result-desc">
+        <span ng-show="store.city != '' && store.city != null">{{store.city}}, </span>
+        <span ng-show="store.postcode != '' && store.postcode != null">{{store.postcode}}</span>
+    </span>
+    <span class="nossas-lojas-result-desc">
+        <span ng-show="store.phone != 'null' && store.phone != null">{{langs.tel}}.: {{store.phone}}</span>
+    </span>
+</a>

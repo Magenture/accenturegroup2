@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Gama_Core::configuration" title="Gama Extensions">
+                    <resource id="Gama_NossasLojas::configuration" title="Nossas Lojas" sortOrder="10">
+                        <resource id="Gama_NossasLojas::stores" title="Stores" sortOrder="10" />
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

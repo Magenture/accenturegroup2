@@ -1,0 +1,40 @@
+.nossas-lojas-navigation,
+.nossas-lojas-map {
+    height: 500px;
+}
+.nossas-lojas-navigation {
+    width: 25%;
+    float: left;
+    padding-right: 20px;
+}
+.nossas-lojas-map {
+    overflow: hidden;
+}
+.nossas-lojas-results {
+    height: 468px;
+    overflow-y: auto;
+}
+.nossas-lojas-result {
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid #c2c2c2;
+}
+.nossas-lojas-result-name {
+    margin: 0 0 5px;
+}
+.nossas-lojas-result-desc {
+    display: block;
+}
+.nossas-lojas-group-heading {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 10px;
+}
+.nossas-lojas-popup h4 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.nossas-lojas-popup p {
+    margin-bottom: 0;
+}
+

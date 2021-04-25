@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Gama\NossasLojas\Api\StoreRepositoryInterface" type="Gama\NossasLojas\Model\StoreRepository" />
+
+    <preference for="Gama\NossasLojas\Api\Data\StoreInterface" type="Gama\NossasLojas\Model\Store" />
+
+    <virtualType name="NossasLojasStoresGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="NossasLojasStoresGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Gama\NossasLojas\Model\ResourceModel\Store\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">NossasLojasStoresGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="Gama\NossasLojas\Model\ResourceModel\Store\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">gama_mystores_store</argument>
+            <argument name="resourceModel" xsi:type="string">Gama\NossasLojas\Model\ResourceModel\Store</argument>
+        </arguments>
+    </virtualType>
+
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="nossaslojas_stores_grid_data_source" xsi:type="string">Gama\NossasLojas\Model\ResourceModel\Store\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

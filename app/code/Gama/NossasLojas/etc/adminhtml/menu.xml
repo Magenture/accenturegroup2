@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Gama_NossasLojas::nossaslojas"
+             title="Nossas Lojas"
+             module="Gama_NossasLojas"
+             sortOrder="50"
+             parent="Magento_Backend::content"
+             resource="Gama_NossasLojas::configuration" />
+
+        <add id="Gama_NossasLojas::configuration"
+             title="Google API Key"
+             module="Gama_NossasLojas"
+             sortOrder="10"
+             parent="Gama_NossasLojas::nossaslojas"
+             action="adminhtml/system_config/edit/section/nossaslojas"
+             resource="Gama_NossasLojas::configuration" />
+
+        <add id="Gama_NossasLojas::stores_list"
+             title="Stores"
+             module="Gama_NossasLojas"
+             sortOrder="20"
+             parent="Gama_NossasLojas::nossaslojas"
+             action="nossaslojas/stores"
+             resource="Gama_NossasLojas::stores" />
+    </menu>
+</config>
