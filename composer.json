@@ -16,6 +16,7 @@
         "magento/magento-composer-installer": "^0.2.1",
         "magento/product-community-edition": "2.4.2",
         "mageplaza/magento-2-product-slider": "^4.0",
+        "mageplaza/module-smtp": "^4.3",
         "mercadopago/magento2-plugin": "3.*",
         "rafaelstz/traducao_magento2_pt_br": "dev-master",
         "wolfsellers/module-enabledisabletfa": "^1.0"
