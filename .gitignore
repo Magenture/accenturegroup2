@@ -17,6 +17,7 @@ atlassian*
 /app/config_sandbox
 /app/etc/env.php
 /app/code/Magento/TestModule*
+/app/code/GamaAcademy/Reseller*
 /lib/internal/flex/uploader/.actionScriptProperties
 /lib/internal/flex/uploader/.flexProperties
 /lib/internal/flex/uploader/.project
