@@ -88,6 +88,7 @@ $googleApiKey = $block->getGoogleApiKey();
                         name: store.name,
                         address: store.address,
                         city: store.city,
+                        time_open: store.time_open,
                         postcode: store.postcode,
                         phone: store.phone,
                         visible: true
@@ -138,6 +139,11 @@ $googleApiKey = $block->getGoogleApiKey();
                     if(marker.phone !== null && marker.phone !== '')
                     {
                         content += '<br /><?php echo __('Tel'); ?>.: ' + marker.phone;
+                    }
+
+                    if(marker.time_open !== null && marker.time_open !== '')
+                    {
+                        content += '<br /><?php echo __('Horário de Funcionamento:'); ?>.: <br />' + marker.time_open;
                     }
 
                     content += '</p>';

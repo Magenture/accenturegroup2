@@ -130,6 +130,16 @@ class Info extends Generic
         );
 
         $fieldset->addField(
+            'time_open',
+            'text',
+            [
+                'name'     => 'time_open',
+                'label'    => __('Horário de Funcionamento'),
+                'required' => false
+            ]
+        );
+
+        $fieldset->addField(
             'is_active',
             'select',
             [

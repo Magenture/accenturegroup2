@@ -9,6 +9,7 @@
         <column xsi:type="varchar" name="postcode" length="100" nullable="true" default="null" />
         <column xsi:type="varchar" name="city" length="100" nullable="true" default="São Paulo" />
         <column xsi:type="varchar" name="phone" length="100" nullable="true" default="null" />
+        <column xsi:type="varchar" name="time_open" length="255" nullable="true" default="null" />
         <column xsi:type="varchar" name="lat" length="100" nullable="true" default="null" comment="Latitude" />
         <column xsi:type="varchar" name="lng" length="100" nullable="true" default="null" comment="Longitude" />
         <column xsi:type="varchar" name="zoom" length="5" nullable="true" default="null" comment="Zoom do GoogleMap" />

@@ -64,7 +64,7 @@ class StoresList extends Template implements IdentityInterface
                 'home',
                 [
                     'label' => __('Home'),
-                    'title' => __('Go to Home Page'),
+                    'title' => __('Voltar à página inicial'),
                     'link' => $this->_storeManager->getStore()->getBaseUrl()
                 ]
             );
