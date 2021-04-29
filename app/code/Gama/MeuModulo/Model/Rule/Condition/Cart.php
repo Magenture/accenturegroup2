@@ -112,6 +112,8 @@ class Cart extends \Magento\Rule\Model\Condition\AbstractCondition
             $rules = $this->ruleRepository->getList($searchCriteriaBuilder->create());
 
             if($rules != null) {
+                setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+                date_default_timezone_set('America/Sao_Paulo');
                 //Get value set for selected day on the rule, for example Monday => 1
                 $value = $rules->getItems()[0]->getCondition()->getConditions()[0]->getValue();
                 return date('w') == $value;
