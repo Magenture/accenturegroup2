@@ -43,3 +43,4 @@
 "seconds. 86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.","86400 segundos por padrão"
 "From Date","De"
 "To Date","Até"
+"Street Address: Line %1","Linha de endereço %1"
